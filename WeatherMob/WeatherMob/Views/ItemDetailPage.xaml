@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WeatherMob.Views.ItemDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Image Aspect="AspectFill" Source="https://images.pexels.com/photos/912110/pexels-photo-912110.jpeg"/>
+        <Grid BackgroundColor="#CC000000"></Grid>
+
+        <StackLayout>
+            <StackLayout x:Name="CurrentWeatherGrid"
+                         Orientation="Vertical">
+
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label FontSize="24" Text="{Binding CurrentWeatherData.Name}"/>
+                    <Label FontSize="24" Text=","/>
+                    <Label FontSize="24" Text="{Binding CurrentWeatherData.SystemData.Country}"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+
+                    <Label FontSize="32" Text="{Binding CurrentWeatherData.MainData.Temperature}"/>
+                    <Label FontSize="32" Text="C"/>
+                </StackLayout>
+
+
+                <Label HorizontalOptions="Center"
+                       FontSize="18"
+                       Text="{Binding CurrentWeatherData.WeatherList[0].Main}"/>
+
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="Updated time"/>
+                    <Label Text="{Binding CurrentWeatherData.CalculationTime, Converter={StaticResource DateTimeToLabelConverter}, ConverterParameter='hh:mm tt'}"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label FontSize="12" Text="Wind"/>
+                    <Label FontSize="12" Text="{Binding CurrentWeatherData.Wind.Speed}"/>
+                    <Label FontSize="12" Text="m/s" Margin="0,0,2,0"/>
+
+                </StackLayout>
+            </StackLayout>
+
+            <Grid Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="DailyGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Margin="8"
+                           FontSize="24"
+                           Text="Daily:"/>
+
+                    <ListView Grid.Row="1"
+                              SeparatorColor="White"
+                              ItemsSource="{Binding DailyForecast.Items}"
+                              HasUnevenRows="True"
+                              SelectedItem="{Binding SelectedDailyWeatherData, Mode=TwoWay}">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Margin="12">
+                                        <Grid>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Label FontSize="18"
+                                                   Text="{Binding CalculationTime, Converter={StaticResource DateTimeToLabelConverter}, ConverterParameter='d MMMM'}"/>
+                                                <Label Grid.Row="1"
+                                                   FontSize="14"
+                                                   Text="{Binding CalculationTime, Converter={StaticResource DateTimeToLabelConverter}, ConverterParameter='dddd'}"/>
+
+                                                <StackLayout Grid.Row="2"
+                                                             HorizontalOptions="Start"
+                                                                 Orientation="Horizontal"
+                                                                 VerticalOptions="Center">
+                                                    <Label Text="Max:"/>
+                                                    <Label Text="{Binding Temperature.Maximum}"/>
+                                                    <Label Text="&#186;"
+                                                           Margin="0,0,8,0"/>
+                                                    <Label Text="Min:"/>
+                                                    <Label Text="{Binding Temperature.Minimum}"/>
+                                                    <Label Text="&#186;"/>
+                                                </StackLayout>
+
+                                                <StackLayout Grid.Row="2"
+                                                             HorizontalOptions="End"
+                                                             Orientation="Horizontal"
+                                                             VerticalOptions="Center">
+                                                </StackLayout>
+
+                                                <Label Grid.Row="3" 
+                                                   FontSize="16"
+                                                   Text="{Binding WeatherList[0].Main}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
+                <Grid x:Name="HourlyGrid"
+                          Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Hourly:"
+                           Margin="8"
+                           FontSize="24"/>
+
+                    <ListView Grid.Row="1"
+                              SeparatorColor="White"
+                              HasUnevenRows="True"
+                              ItemsSource="{Binding HourlyData}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Margin="12">
+                                        <StackLayout Orientation="Vertical">
+
+                                            <Label FontSize="18" Text="{Binding CalculationLocalTime, Converter={StaticResource DateTimeToLabelConverter}, ConverterParameter='h tt'}"/>
+
+
+                                            <Image HorizontalOptions="Start"
+                                                   Source="{Binding WeatherList[0].IconPath}"/>
+
+                                            <StackLayout HorizontalOptions="Start"
+                                                         Orientation="Horizontal"
+                                                         VerticalOptions="Center">
+                                                <Label Text="{Binding MainData.Temperature}"/>
+                                                <Label Text="&#186;" Margin="0,0,8,0"/>
+                                                <Label Text="{Binding WeatherList[0].Main}"/>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>
