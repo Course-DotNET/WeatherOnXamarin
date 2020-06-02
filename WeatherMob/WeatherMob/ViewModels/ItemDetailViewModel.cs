@@ -3,16 +3,16 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WeatherMob.Models;
-using WeatherMob.Models;
-using WeatherMob.Services;
+using Weather.Core;
+using Weather.Models;
+using Weather.Services;
 using Xamarin.Forms;
 
-namespace WeatherMob.ViewModels
+namespace Weather.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public OpenWeatherApiService ApiService => DependencyService.Get<OpenWeatherApiService>();
+        public OpenWeatherApiService ApiService => ContainerProvider.Resolve<OpenWeatherApiService>();
 
         private CurrentWeatherData _currentWeatherData;
         public CurrentWeatherData CurrentWeatherData

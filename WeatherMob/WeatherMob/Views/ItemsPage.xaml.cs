@@ -4,14 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Weather.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using WeatherMob.Models;
-using WeatherMob.Views;
-using WeatherMob.ViewModels;
+using Weather.Models;
+using Weather.Views;
 
-namespace WeatherMob.Views
+namespace Weather.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer

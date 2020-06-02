@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace WeatherMob.iOS
+namespace Weather.iOS
 {
     public class Application
     {

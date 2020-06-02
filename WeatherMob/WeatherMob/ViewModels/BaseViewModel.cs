@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WeatherMob.ViewModels
+namespace Weather.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

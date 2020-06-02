@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace WeatherMob.Helpers
+namespace Weather.Helpers
 {
     public class DateTimeToLabelConverter : IValueConverter
     {

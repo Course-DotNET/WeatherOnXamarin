@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace WeatherMob.ViewModels
+namespace Weather.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

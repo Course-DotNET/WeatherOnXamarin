@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WeatherMob.Models
+namespace Weather.Models
 {
     public enum MenuItemType
     {

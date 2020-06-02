@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-using WeatherMob.Models;
-using WeatherMob.Services;
-using WeatherMob.Views;
+using Weather.Models;
+using Weather.Views;
 
-namespace WeatherMob.ViewModels
+namespace Weather.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {

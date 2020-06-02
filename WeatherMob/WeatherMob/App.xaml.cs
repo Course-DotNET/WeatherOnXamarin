@@ -1,11 +1,14 @@
 ﻿using System;
+using Autofac;
+using Weather.Core;
+using Weather.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using WeatherMob.Services;
-using WeatherMob.Views;
+using Weather.Views;
+using MainPage = Weather.Views.MainPage;
 
-namespace WeatherMob
+namespace Weather
 {
     public partial class App : Application
     {
@@ -13,7 +16,11 @@ namespace WeatherMob
         {
             InitializeComponent();
 
-                DependencyService.Register<OpenWeatherApiService>();
+            ContainerProviderInitializer.RegisterDependencies(builder =>
+            {
+                builder.RegisterType<UserSettings>().As<IUserSettings>();
+            });
+
             MainPage = new MainPage();
         }
 

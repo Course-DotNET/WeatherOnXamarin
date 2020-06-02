@@ -4,8 +4,8 @@
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
-            xmlns:views="clr-namespace:WeatherMob.Views"
-            x:Class="WeatherMob.Views.MainPage">
+            xmlns:views="clr-namespace:Weather.Views"
+            x:Class="Weather.Views.MainPage">
 
     <MasterDetailPage.Master>
         <views:MenuPage />
